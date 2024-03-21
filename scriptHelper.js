@@ -23,6 +23,7 @@ function validateInput(input) {
   if (input === "") {
     return ("Empty");
   } else if (isNaN(input)) {
+
     return ("Not a Number");
   } else {
     return ("Is a Number");
@@ -39,10 +40,12 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
   let validatedFuel = validateInput(fuelLevel)
   let validateCargo = validateInput(cargoMass)
-  if (pilot === '' || copilot === '' || fuelLevel === '' || cargoMass === '') {
-    window.alert("Please enter a valid responce")
-  }else if (isNaN(Number(fuelLevel)) || isNaN(Number(cargoMass))) {
-    window.alert('Please enter a valid response num');
+  if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoMass) === "Empty") {
+    window.alert("All fields are required")
+  }
+
+ if (isNaN(Number(fuelLevel)) && isNaN(Number(cargoMass))) {
+    window.alert('Please enter a valid response');
   }
   pilotStatus.innerHTML = `Pilot ${pilot + ''} is ready for launch`
   copilostStatus.innerHTML = `Co-pilot ${copilot + ''} is ready for launch`
@@ -83,7 +86,6 @@ async function myFetch() {
 
 
 myFetch();
-// Function is completed, end user is able to call Random Planetary data //
 function pickPlanet(planets) {
   const randomIndex = Math.floor(Math.random() * planets.length);
   return planets[randomIndex];

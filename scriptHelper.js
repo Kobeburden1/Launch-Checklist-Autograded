@@ -19,7 +19,6 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 
-// Validating end user information with a cross reference to data format //
 function validateInput(input) {
   if (input === "") {
     return ("Empty");
@@ -29,7 +28,6 @@ function validateInput(input) {
     return ("Is a Number");
   }
 };
-// add event listner and event prevent //
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
   let faultyItems = document.getElementById('faultyItems')
@@ -41,13 +39,10 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
 
   let validatedFuel = validateInput(fuelLevel)
   let validateCargo = validateInput(cargoMass)
-
   if (pilot === '' || copilot === '' || fuelLevel === '' || cargoMass === '') {
     window.alert("Please enter a valid responce")
-  }
-
-  if (isNaN(Number(fuelLevel)) && isNaN(Number(cargoMass))) {
-    window.alert('Please enter a valid response ');
+  }else if (isNaN(Number(fuelLevel)) || isNaN(Number(cargoMass))) {
+    window.alert('Please enter a valid response num');
   }
   pilotStatus.innerHTML = `Pilot ${pilot + ''} is ready for launch`
   copilostStatus.innerHTML = `Co-pilot ${copilot + ''} is ready for launch`

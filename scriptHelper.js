@@ -20,12 +20,13 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 
 function validateInput(input) {
+  let numberInput = Number(input)
   if (input === "") {
     return ("Empty");
-  } else if (isNaN(input)) {
+  } else if (isNaN(numberInput)) {
 
     return ("Not a Number");
-  } else {
+  } else if (isNaN(numberInput) === false) {
     return ("Is a Number");
   }
 };
@@ -44,9 +45,9 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     window.alert("All fields are required")
   }
 
- if (isNaN(Number(fuelLevel)) && isNaN(Number(cargoMass))) {
-    window.alert('Please enter a valid response');
-  }
+ if(validateInput(pilot) === "Is a Number" || validateInput(copilot) === "Is a Number" || validateInput(fuelLevel) === "Not a Number" || validateInput(cargoLevel) === "Not a Number" ) {
+    window.alert("Please enter a valid response");
+  }else
   pilotStatus.innerHTML = `Pilot ${pilot + ''} is ready for launch`
   copilostStatus.innerHTML = `Co-pilot ${copilot + ''} is ready for launch`
 
